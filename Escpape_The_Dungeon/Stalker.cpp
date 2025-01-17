@@ -1,7 +1,9 @@
+/*
+
 #include "Stalker.h"
 #include "SFML/Graphics.hpp"
 
-#include "VectorOperations.h"
+//#include "VectorOperations.h"
 #include "Logger.h"
 
 #include <cmath>
@@ -52,3 +54,4 @@ void Stalker::followEntity(Entity* followedEntity, float deltaTime)
 	updatePosition(m_position + velocity * deltaTime);
 
 }
+*/

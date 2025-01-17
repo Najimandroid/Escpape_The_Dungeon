@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #include "SFML/Graphics.hpp"
 
 #include "Enemy.h"
@@ -15,4 +15,4 @@ public:
 
 private:
 	Entity* m_target;
-};
+};*/
