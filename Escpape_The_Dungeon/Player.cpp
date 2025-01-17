@@ -1,6 +1,9 @@
 #include "Player.h"
-#include "VectorOperations.h"
 #include "SFML/Graphics.hpp"
+
+//////////////////////
+//* INITIALIZATION *\\
+//////////////////////
 
 Player::Player(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize)
 {
@@ -14,10 +17,42 @@ Player::Player(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize)
 	initSprite();
 }
 
-void Player::update(float deltaTime)
+void Player::initHitbox(sf::Vector2f hitboxSize)
 {
-	manageInputs(deltaTime);
+	sf::RectangleShape box(hitboxSize);
+	box.setPosition(m_position);
+
+	box.setFillColor(sf::Color::Transparent);
+	box.setOutlineColor(sf::Color::Red);
+
+	box.setOutlineThickness(3);
+
+	m_hitbox = box;
 }
+
+void Player::initSprite()
+{
+	sf::RectangleShape body(m_hitbox.getSize());
+	body.setPosition(m_position);
+
+	body.setFillColor(sf::Color::Green);
+	
+	m_sprite = body;
+}
+
+////////////////
+//* UPDATING *\\
+////////////////
+
+void Player::update(sf::RenderWindow& window, float deltaTime)
+{
+	handleInputs(deltaTime);
+	draw(window);
+}
+
+////////////////
+//* GRAPHICS *\\
+////////////////
 
 void Player::draw(sf::RenderWindow& window)
 {
@@ -25,7 +60,11 @@ void Player::draw(sf::RenderWindow& window)
 	drawHitbox(window);
 }
 
-void Player::manageInputs(float deltaTime)
+//////////////
+//* INPUTS *\\
+//////////////
+
+void Player::handleInputs(float deltaTime)
 {
 	sf::Vector2f velocity;
 
@@ -50,22 +89,3 @@ void Player::manageInputs(float deltaTime)
 		updatePosition(m_position + velocity * deltaTime);
 	}
 }
-
-void Player::initHitbox(sf::Vector2f hitboxSize)
-{
-	sf::RectangleShape box(hitboxSize);
-	box.setPosition(m_position);
-	box.setFillColor(sf::Color::Transparent);
-	box.setOutlineColor(sf::Color::Red);
-	box.setOutlineThickness(3);
-	m_hitbox = box;
-}
-
-void Player::initSprite()
-{
-	sf::RectangleShape body(m_hitbox.getSize());
-	body.setFillColor(sf::Color::Green);
-	body.setPosition(m_position);
-	m_sprite = body;
-}
-
