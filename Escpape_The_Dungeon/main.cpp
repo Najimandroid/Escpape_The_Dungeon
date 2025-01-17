@@ -1,16 +1,29 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "Entity.h"
+#include "Player.h"
+
+
+
+
 int main()
 {
+#ifdef _DEBUG 
+	std::cout << "---[DEBUG MODE]---\n";
+#endif
 
-	sf::RenderWindow window(sf::VideoMode(1600, 1080), "Escape the Dungeon");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Escape the Dungeon");
+	window.setFramerateLimit(60);
 
-	sf::RectangleShape rect({ 50, 50 });
-	rect.setFillColor(sf::Color::Green);
+	Player plr({ 1920 / 2, 1080 / 2 }, { 50, 50 });
 	
+	sf::Clock clock;
+	float deltaTime = 0.f;
+
 	while (window.isOpen())
 	{
+		deltaTime = clock.restart().asSeconds();
 		window.clear();
 
 		sf::Event event;
@@ -22,7 +35,9 @@ int main()
 			}
 		}
 
-		window.draw(rect);
+		plr.update(deltaTime);
+		plr.draw(window);
+
 		window.display();
 	}
 
