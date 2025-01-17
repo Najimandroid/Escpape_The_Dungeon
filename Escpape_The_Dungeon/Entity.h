@@ -18,6 +18,8 @@ public:
 	[[nodiscard]] bool collide(Entity* otherEntity);
 
 	sf::RectangleShape& getHitbox() { return m_hitbox; }
+	sf::Vector2f getPosition() { return m_position; }
+
 
 protected:
 	

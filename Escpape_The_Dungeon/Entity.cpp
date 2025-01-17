@@ -8,7 +8,7 @@ void Entity::drawHitbox(sf::RenderWindow& window)
 }
 #else
 void Entity::drawHitbox(sf::RenderWindow& window) {}
-#endif // DEBUG
+#endif
 
 
 void Entity::updatePosition(const sf::Vector2f newPosition)

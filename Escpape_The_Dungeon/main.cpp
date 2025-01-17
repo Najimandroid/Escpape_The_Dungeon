@@ -20,7 +20,7 @@ int main()
 	window.setFramerateLimit(60);
 
 	Player plr({ 1920 / 2, 1080 / 2 }, { 50, 50 });
-	Enemy monster({ 500, 500 }, { 50, 50 });
+	Stalker monster({ 500, 500 }, { 50, 50 }, &plr);
 	
 	sf::Clock clock;
 	float deltaTime = 0.f;
