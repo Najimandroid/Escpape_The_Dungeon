@@ -141,8 +141,10 @@
   <ItemGroup>
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Interactable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Potion.cpp" />
     <ClCompile Include="Stalker.cpp" />
     <ClCompile Include="VectorOperations.h" />
     <ClCompile Include="Wanderer.cpp" />
@@ -150,8 +152,10 @@
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Interactable.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Potion.h" />
     <ClInclude Include="Stalker.h" />
     <ClInclude Include="Wanderer.h" />
   </ItemGroup>

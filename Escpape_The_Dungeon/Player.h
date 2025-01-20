@@ -13,9 +13,16 @@ public:
 	void update(sf::RenderWindow& window, float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 
+	///////////////
+	//* GETTERS *\\
+	///////////////
+	float getSpeed() const { return m_speed; }
+
+	///////////////
+	//* SETTERS *\\
+	///////////////
+	void setSpeed(const float newSpeed) { m_speed = newSpeed; }
+
 private:
 	void handleInputs(float deltaTime);
-
-	void initHitbox(sf::Vector2f hitboxSize);
-	void initSprite();
 };

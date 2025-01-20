@@ -21,7 +21,10 @@ Stalker::Stalker(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize, Entity* ta
 	initHitbox(hitboxSize);
 	initSprite();
 
+	m_hitbox.setFillColor(sf::Color::Red);
+
 	m_target = target;
+	updatePosition(m_position);
 }
 
 ////////////////

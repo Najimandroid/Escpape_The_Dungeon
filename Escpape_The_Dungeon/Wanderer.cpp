@@ -11,6 +11,8 @@ Wanderer::Wanderer(sf::Vector2f position, sf::Vector2f hitboxSize, const sf::Vec
 	initHitbox(hitboxSize);
 	initSprite();
 
+	m_hitbox.setFillColor(sf::Color::Red);
+
 	for (int i = 0; i < numberOfPositions; i++)
 	{
 		m_positionPoints.push_back(positionPoints[i]);
@@ -18,6 +20,8 @@ Wanderer::Wanderer(sf::Vector2f position, sf::Vector2f hitboxSize, const sf::Vec
 
 	m_position = m_positionPoints.at(0);
 	m_currentPosition = 0;
+
+	updatePosition(m_position);
 }
 
 void Wanderer::update(sf::RenderWindow& window, float deltaTime)
@@ -40,7 +44,7 @@ void Wanderer::followPath(float deltaTime)
 		targetPosition = m_positionPoints.at(m_currentPosition);
 	}
 
-	LOG("POSITION: " + std::to_string(m_position.x) + ", " + std::to_string(m_position.y) + " | TARGET:" + std::to_string(targetPosition.x) + ", " + std::to_string(targetPosition.y));
+	//LOG("POSITION: " + std::to_string(m_position.x) + ", " + std::to_string(m_position.y) + " | TARGET:" + std::to_string(targetPosition.x) + ", " + std::to_string(targetPosition.y));
 
 	sf::Vector2f direction = targetPosition - m_position;
 	float distance = sqrt(direction.x * direction.x + direction.y * direction.y);

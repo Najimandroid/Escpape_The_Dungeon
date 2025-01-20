@@ -10,6 +10,28 @@ void Entity::drawHitbox(sf::RenderWindow& window)
 void Entity::drawHitbox(sf::RenderWindow& window) {}
 #endif
 
+void Entity::initHitbox(sf::Vector2f hitboxSize)
+{
+	sf::RectangleShape box(hitboxSize);
+	box.setPosition(m_position);
+
+	box.setFillColor(sf::Color::Transparent);
+	box.setOutlineColor(sf::Color::Blue);
+
+	box.setOutlineThickness(3);
+
+	m_hitbox = box;
+}
+
+void Entity::initSprite()
+{
+	sf::RectangleShape body(m_hitbox.getSize());
+	body.setPosition(m_position);
+
+	body.setFillColor(sf::Color::Red);
+
+	m_sprite = body;
+}
 
 void Entity::updatePosition(const sf::Vector2f newPosition)
 {
@@ -30,5 +52,6 @@ bool Entity::collide(Entity* otherEntity)
 	}
 	return false;
 }
+
 
 

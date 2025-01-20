@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Stalker.h"
 #include "Wanderer.h"
+#include "Potion.h"
 
 #include "Logger.h"
 
@@ -20,7 +21,7 @@ int main()
 
 	bool isRunning = true;
 
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Escape the Dungeon", sf::Style::Fullscreen);
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Escape the Dungeon");
 	window.setFramerateLimit(60);
 
 	Player plr({ 1920 / 2, 1080 / 2 }, { 50, 50 });
@@ -29,6 +30,8 @@ int main()
 	sf::Vector2f pointsList[4] = {sf::Vector2f(50, 50), sf::Vector2f(50, 1000), sf::Vector2f(1000, 1000),  sf::Vector2f(1000, 50)};
 	Wanderer monster2({ 0, 0 }, { 50, 50 }, pointsList, 4);
 	
+	Potion potion({ 200, 200 }, 1.5f);
+
 	sf::Clock clock;
 	float deltaTime = 0.f;
 
@@ -56,11 +59,17 @@ int main()
 		plr.update(window, deltaTime);
 		monster.update(window, deltaTime);
 		monster2.update(window, deltaTime);
+		potion.update(window, deltaTime);
 
 		if (plr.collide(&monster2) || plr.collide(&monster))
 		{
 			LOG("GAME OVER!");
 			isRunning = false;
+		}
+
+		if (plr.collide(&potion))
+		{
+			potion.interact(plr);
 		}
 
 		window.display();

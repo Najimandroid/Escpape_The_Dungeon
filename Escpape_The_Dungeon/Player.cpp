@@ -15,30 +15,10 @@ Player::Player(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize)
 
 	initHitbox(hitboxSize);
 	initSprite();
+
+	m_hitbox.setFillColor(sf::Color::Green);
 }
 
-void Player::initHitbox(sf::Vector2f hitboxSize)
-{
-	sf::RectangleShape box(hitboxSize);
-	box.setPosition(m_position);
-
-	box.setFillColor(sf::Color::Transparent);
-	box.setOutlineColor(sf::Color::Red);
-
-	box.setOutlineThickness(3);
-
-	m_hitbox = box;
-}
-
-void Player::initSprite()
-{
-	sf::RectangleShape body(m_hitbox.getSize());
-	body.setPosition(m_position);
-
-	body.setFillColor(sf::Color::Green);
-	
-	m_sprite = body;
-}
 
 ////////////////
 //* UPDATING *\\

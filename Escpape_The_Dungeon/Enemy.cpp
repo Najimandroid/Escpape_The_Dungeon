@@ -33,29 +33,6 @@ Enemy::Enemy(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize)
 	initSprite();
 }
 
-void Enemy::initHitbox(sf::Vector2f hitboxSize)
-{
-	sf::RectangleShape box(hitboxSize);
-	box.setPosition(m_position);
-
-	box.setFillColor(sf::Color::Transparent);
-	box.setOutlineColor(sf::Color::Magenta); 
-
-	box.setOutlineThickness(3);
-
-	m_hitbox = box;
-}
-
-void Enemy::initSprite()
-{
-	sf::RectangleShape body(m_hitbox.getSize());
-	body.setPosition(m_position);
-
-	body.setFillColor(sf::Color::Red);
-	
-	m_sprite = body;
-}
-
 ////////////////
 //* UPDATING *\\
 ////////////////

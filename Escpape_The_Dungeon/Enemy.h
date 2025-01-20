@@ -13,9 +13,4 @@ public:
 
 	virtual void update(sf::RenderWindow& window, float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
-
-protected:
-
-	void initHitbox(sf::Vector2f hitboxSize);
-	void initSprite();
 };

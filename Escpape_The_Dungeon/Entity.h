@@ -19,7 +19,10 @@ public:
 
 	sf::RectangleShape& getHitbox() { return m_hitbox; }
 	sf::Vector2f getPosition() { return m_position; }
+protected:
 
+	void initHitbox(sf::Vector2f hitboxSize);
+	void initSprite();
 
 protected:
 	
