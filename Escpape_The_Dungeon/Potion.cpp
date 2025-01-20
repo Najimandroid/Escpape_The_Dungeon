@@ -6,7 +6,7 @@ Potion::Potion(sf::Vector2f spawnPosition, float speedMultiplier)
 	m_position = spawnPosition;
 	m_speedMultiplier = speedMultiplier;
 
-	LOG("POTION CREATED AT: " + std::to_string(m_position.x) + ", " + std::to_string(m_position.y))
+	//LOG("POTION CREATED AT: " + std::to_string(m_position.x) + ", " + std::to_string(m_position.y))
 
 	m_hitbox.setFillColor(sf::Color::Cyan);
 

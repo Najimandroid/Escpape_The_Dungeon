@@ -6,7 +6,9 @@
 #include "Player.h"
 #include "Stalker.h"
 #include "Wanderer.h"
+
 #include "Potion.h"
+#include "Key.h"
 
 #include "Logger.h"
 
@@ -31,6 +33,7 @@ int main()
 	Wanderer monster2({ 0, 0 }, { 50, 50 }, pointsList, 4);
 	
 	Potion potion({ 200, 200 }, 1.5f);
+	Key key({ 200, 500 }, nullptr);
 
 	sf::Clock clock;
 	float deltaTime = 0.f;
@@ -60,6 +63,7 @@ int main()
 		monster.update(window, deltaTime);
 		monster2.update(window, deltaTime);
 		potion.update(window, deltaTime);
+		key.update(window, deltaTime);
 
 		if (plr.collide(&monster2) || plr.collide(&monster))
 		{
@@ -70,6 +74,11 @@ int main()
 		if (plr.collide(&potion))
 		{
 			potion.interact(plr);
+		}
+
+		if (plr.collide(&key))
+		{
+			key.interact(plr);
 		}
 
 		window.display();
