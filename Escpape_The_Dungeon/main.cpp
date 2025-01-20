@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "EntityManager.h"
+#include "Map.h"
 
 #include "Stalker.h"
 #include "Wanderer.h"
@@ -20,10 +21,11 @@ int main()
 #endif
 
 	EntityManager manager;
+	Map map;
 
 	bool isRunning = true;
 
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Escape the Dungeon");
+	sf::RenderWindow window(sf::VideoMode(1920 , 1080), "Escape the Dungeon");
 	window.setFramerateLimit(60);
 
 	auto plr = std::make_unique<Player>(sf::Vector2f(1920 / 2, 1080 / 2), sf::Vector2f(50, 50));
@@ -45,8 +47,6 @@ int main()
 	manager.addInteractable(std::move(key));
 
 
-	
-
 
 	sf::Clock clock;
 	float deltaTime = 0.f;
@@ -55,6 +55,8 @@ int main()
 	{
 		deltaTime = clock.restart().asSeconds();
 		window.clear();
+
+		map.drawMap(window);
 
 		sf::Event event;
 		while(window.pollEvent(event))

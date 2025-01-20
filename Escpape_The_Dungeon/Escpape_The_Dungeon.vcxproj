@@ -146,6 +146,7 @@
     <ClCompile Include="Interactable.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Potion.cpp" />
     <ClCompile Include="Stalker.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Interactable.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Potion.h" />
     <ClInclude Include="Stalker.h" />
