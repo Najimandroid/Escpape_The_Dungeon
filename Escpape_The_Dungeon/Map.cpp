@@ -24,7 +24,7 @@ void Map::drawMap(sf::RenderWindow& window)
 	{
 		for (int x = 0; x < 15; x++)
 		{
-			if (m_map[x + 15 * y] == 1)dddddd
+			if (m_map[x + 15 * y] == 1)
 			{
 				sf::RectangleShape tile({ 100.0f, 100.0f });
 				tile.setPosition({ x * 100.0f, y * 100.0f });
