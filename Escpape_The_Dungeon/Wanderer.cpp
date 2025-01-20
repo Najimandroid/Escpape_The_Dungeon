@@ -36,13 +36,21 @@ void Wanderer::followPath(float deltaTime)
 	if (m_position == targetPosition)
 	{
 		m_currentPosition++;
-		if (m_currentPosition > m_positionPoints.size()) m_currentPosition = 0;
+		if (m_currentPosition > m_positionPoints.size() - 1) m_currentPosition = 0;
+		targetPosition = m_positionPoints.at(m_currentPosition);
 	}
 
-	velocity = normalize({
-		 (targetPosition.x - this->getPosition().x) / (sqrt((targetPosition.x - this->getPosition().x) * (targetPosition.x - this->getPosition().x) + (targetPosition.y - this->getPosition().y) * (targetPosition.y - this->getPosition().y)))
-		,(targetPosition.y - this->getPosition().y) / (sqrt((targetPosition.x - this->getPosition().x) * (targetPosition.x - this->getPosition().x) + (targetPosition.y - this->getPosition().y) * (targetPosition.y - this->getPosition().y)))
-	});
+	LOG("POSITION: " + std::to_string(m_position.x) + ", " + std::to_string(m_position.y) + " | TARGET:" + std::to_string(targetPosition.x) + ", " + std::to_string(targetPosition.y));
+
+	sf::Vector2f direction = targetPosition - m_position;
+	float distance = sqrt(direction.x * direction.x + direction.y * direction.y);
+
+	
+	if (distance > 0 && distance < 5) { velocity = { 0, 0 }; m_position = targetPosition; }
+	else if (distance > 0) velocity = direction / distance;
+	else velocity = { 0, 0 };
+
+	velocity = velocity * sf::Vector2f{ m_speed * 20, m_speed * 20 };
 
 	updatePosition(m_position + velocity * deltaTime);
 }

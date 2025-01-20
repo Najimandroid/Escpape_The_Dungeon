@@ -1,9 +1,7 @@
-/*
-
 #include "Stalker.h"
 #include "SFML/Graphics.hpp"
 
-//#include "VectorOperations.h"
+#include "VectorOperations.h"
 #include "Logger.h"
 
 #include <cmath>
@@ -44,14 +42,14 @@ void Stalker::followEntity(Entity* followedEntity, float deltaTime)
 
 	//LOG("Stalker target position: " + std::to_string(targetPosition.x) + ", " + std::to_string(targetPosition.y));
 
-	velocity = normalize({
-			  (targetPosition.x - this->getPosition().x) / (sqrt((targetPosition.x - this->getPosition().x) * (targetPosition.x - this->getPosition().x) + (targetPosition.y - this->getPosition().y) * (targetPosition.y - this->getPosition().y)))
-			, (targetPosition.y - this->getPosition().y) / (sqrt((targetPosition.x - this->getPosition().x) * (targetPosition.x - this->getPosition().x) + (targetPosition.y - this->getPosition().y) * (targetPosition.y - this->getPosition().y)))
-		});
+	sf::Vector2f direction = targetPosition - m_position;
+	float distance = sqrt(direction.x * direction.x + direction.y * direction.y);
+
+	if (distance > 0) velocity = direction / distance;
+	else velocity = { 0, 0 };
 
 	velocity = velocity * sf::Vector2f{ m_speed * 20, m_speed * 20 };
 
 	updatePosition(m_position + velocity * deltaTime);
 
 }
-*/
