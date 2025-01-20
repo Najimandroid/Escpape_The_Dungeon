@@ -10,6 +10,28 @@ void Entity::drawHitbox(sf::RenderWindow& window)
 void Entity::drawHitbox(sf::RenderWindow& window) {}
 #endif
 
+Entity::Entity()
+{
+	m_position = { 0, 0 };
+
+	m_health = 1;
+	m_damage = 1;
+	m_speed = 1;
+
+	initHitbox({ 5, 5 });
+	initSprite();
+}
+
+Entity::Entity(Entity&& other) noexcept
+{
+	m_position = std::move(other.m_position);
+	m_health = std::move(other.m_health);
+	m_damage = std::move(other.m_damage);
+	m_speed = std::move(other.m_speed);
+	m_hitbox = std::move(other.m_hitbox);
+	m_sprite = std::move(other.m_sprite);
+}
+
 void Entity::initHitbox(sf::Vector2f hitboxSize)
 {
 	sf::RectangleShape box(hitboxSize);

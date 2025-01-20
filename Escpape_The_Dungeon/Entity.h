@@ -6,6 +6,8 @@
 class Entity
 {
 public:
+	Entity();
+	Entity(Entity&& other) noexcept;
 
 	virtual void update(sf::RenderWindow& window, float deltaTime) = 0;
 	virtual void draw(sf::RenderWindow& window) = 0;

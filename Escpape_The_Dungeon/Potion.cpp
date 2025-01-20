@@ -13,6 +13,8 @@ Potion::Potion(sf::Vector2f spawnPosition, float speedMultiplier)
 	updatePosition(m_position);
 }
 
+
+
 void Potion::interact(Player& player)
 {
 	if (m_interacted) return;

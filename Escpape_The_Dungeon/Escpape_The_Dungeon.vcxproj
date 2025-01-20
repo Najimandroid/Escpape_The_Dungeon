@@ -141,6 +141,8 @@
   <ItemGroup>
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="EntityManager.h" />
     <ClCompile Include="Interactable.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="main.cpp" />

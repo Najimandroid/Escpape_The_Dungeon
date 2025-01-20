@@ -9,8 +9,9 @@ public:
 
 	Interactable();
 	Interactable(sf::Vector2f spawnPosition);
+	Interactable(Interactable&& other);
 
-	virtual void interact(Player& player) = 0;
+	virtual void interact(Player& player);
 
 	virtual void update(sf::RenderWindow& window, float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;

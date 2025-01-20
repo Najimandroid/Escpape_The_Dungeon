@@ -1,4 +1,5 @@
 #include "Interactable.h"
+#include "Logger.h"
 
 Interactable::Interactable()
 {
@@ -30,6 +31,24 @@ Interactable::Interactable(sf::Vector2f spawnPosition)
 	initSprite();
 
 	m_hitbox.setFillColor(sf::Color::Magenta);
+}
+
+Interactable::Interactable(Interactable&& other)
+{
+	m_position = std::move(other.m_position);
+	m_health = std::move(other.m_health);
+	m_damage = std::move(other.m_damage);
+	m_speed = std::move(other.m_speed);
+	m_hitbox = std::move(other.m_hitbox);
+	m_sprite = std::move(other.m_sprite);
+	m_interacted = std::move(other.m_interacted);
+}
+
+void Interactable::interact(Player& player)
+{
+	if (m_interacted) return;
+	LOG("Interacted");
+	m_interacted = true;
 }
 
 ////////////////
