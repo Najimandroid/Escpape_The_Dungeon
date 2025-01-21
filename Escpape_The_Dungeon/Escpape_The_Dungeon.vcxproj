@@ -151,6 +151,7 @@
     <ClCompile Include="Potion.cpp" />
     <ClCompile Include="Stalker.cpp" />
     <ClCompile Include="VectorOperations.h" />
+    <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Wanderer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Potion.h" />
     <ClInclude Include="Stalker.h" />
+    <ClInclude Include="Wall.h" />
     <ClInclude Include="Wanderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

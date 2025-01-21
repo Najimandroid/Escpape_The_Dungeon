@@ -1,10 +1,11 @@
 #include "EntityManager.h"
+#include "Logger.h"
 
-EntityManager::EntityManager()
+/*EntityManager::EntityManager()
 {
 	m_enemies.reserve(5);
 	m_interactables.reserve(5);
-}
+}*/
 
 void EntityManager::addPlayer(std::unique_ptr<Player>&& newPlayer)
 {
@@ -19,6 +20,11 @@ void EntityManager::addEnemy(std::unique_ptr<Enemy>&& newEnemy)
 void EntityManager::addInteractable(std::unique_ptr<Interactable>&& newInteractable)
 {
 	m_interactables.push_back(std::move(newInteractable));
+}
+
+void EntityManager::addWall(std::unique_ptr<Wall>&& wall)
+{
+	m_walls.push_back(std::move(wall));
 }
 
 void EntityManager::updateEntities(sf::RenderWindow& window, float deltaTime)
@@ -36,6 +42,11 @@ void EntityManager::updateEntities(sf::RenderWindow& window, float deltaTime)
 	for (auto& interactable : m_interactables)
 	{
 		interactable->update(window, deltaTime);
+	}
+
+	for (auto& wall : m_walls)
+	{
+		wall->update(window, deltaTime);
 	}
 }
 

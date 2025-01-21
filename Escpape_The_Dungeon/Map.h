@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "EntityManager.h"
 
 //MAP 9X15 TILES
 
@@ -8,7 +9,7 @@ class Map
 public:
 
 	//void loadMap();
-	void drawMap(sf::RenderWindow& window);
+	void createMap(EntityManager* manager);
 
 private:
 	//15*9 = 135
@@ -23,6 +24,4 @@ private:
 	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 	};
-
-
 };

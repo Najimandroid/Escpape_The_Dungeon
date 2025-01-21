@@ -1,5 +1,10 @@
 #include <SFML/Graphics.hpp>
+
+
 #include "Map.h"
+#include "Wall.h"
+
+#include <memory>
 
 /*
 void Map::loadMap()
@@ -18,7 +23,7 @@ void Map::loadMap()
 	}
 }*/
 
-void Map::drawMap(sf::RenderWindow& window)
+void Map::createMap(EntityManager* manager)
 {
 	for (int y = 0; y < 9; y++)
 	{
@@ -26,11 +31,8 @@ void Map::drawMap(sf::RenderWindow& window)
 		{
 			if (m_map[x + 15 * y] == 1)
 			{
-				sf::RectangleShape tile({ 100.0f, 100.0f });
-				tile.setPosition({ x * 100.0f, y * 100.0f });
-				tile.setFillColor(sf::Color::White);
-
-				window.draw(tile);
+				auto newWall = std::make_unique<Wall>(sf::Vector2f(100.f * (float)x, 100.f * (float)y));
+				manager->addWall(std::move(newWall));
 			}
 		}
 	}

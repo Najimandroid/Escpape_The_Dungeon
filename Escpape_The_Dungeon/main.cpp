@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
+#include <iostream>
 
 #include "EntityManager.h"
 #include "Map.h"
@@ -13,6 +14,7 @@
 
 #include "Logger.h"
 
+EntityManager* EntityManager::instance = nullptr;
 
 int main()
 {
@@ -20,7 +22,8 @@ int main()
 	std::cout << "---[DEBUG MODE]---\n";
 #endif
 
-	EntityManager manager;
+	EntityManager* manager = EntityManager::getInstance();
+
 	Map map;
 
 	bool isRunning = true;
@@ -38,15 +41,14 @@ int main()
 	auto potion = std::make_unique<Potion>(sf::Vector2f(200, 200), 1.5f);
 	auto key = std::make_unique<Key>(sf::Vector2f(200, 500), nullptr);
 
+	manager->addPlayer(std::move(plr));
+	manager->addEnemy(std::move(monster));
+	manager->addEnemy(std::move(monster2));
 
-	manager.addPlayer(std::move(plr));
-	manager.addEnemy(std::move(monster));
-	manager.addEnemy(std::move(monster2));
+	manager->addInteractable(std::move(potion));
+	manager->addInteractable(std::move(key));
 
-	manager.addInteractable(std::move(potion));
-	manager.addInteractable(std::move(key));
-
-
+	map.createMap(manager);
 
 	sf::Clock clock;
 	float deltaTime = 0.f;
@@ -56,7 +58,7 @@ int main()
 		deltaTime = clock.restart().asSeconds();
 		window.clear();
 
-		map.drawMap(window);
+		
 
 		sf::Event event;
 		while(window.pollEvent(event))
@@ -74,15 +76,15 @@ int main()
 			}
 		}
 
-		manager.updateEntities(window, deltaTime);
+		manager->updateEntities(window, deltaTime);
 
-		if(manager.isEnemyCollisionDetected())
+		if(manager->isEnemyCollisionDetected())
 		{
 			LOG("GAME OVER!");
 			isRunning = false;
 		}
 
-		manager.checkInteractableCollision();
+		manager->checkInteractableCollision();
 
 		window.display();
 	}
