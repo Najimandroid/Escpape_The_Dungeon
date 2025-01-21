@@ -37,6 +37,7 @@ public:
 	void updateEntities(sf::RenderWindow& window, float deltaTime);
 	bool isEnemyCollisionDetected();
 	void checkInteractableCollision();
+	bool isWallCollided(sf::Vector2f futurePosition);
 
 private:
 

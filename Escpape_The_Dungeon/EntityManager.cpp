@@ -31,7 +31,7 @@ void EntityManager::updateEntities(sf::RenderWindow& window, float deltaTime)
 {
 	for (auto& plr : m_players)
 	{
-		plr->update(window, deltaTime);
+		plr->update(window, deltaTime, m_walls);
 	}
 
 	for (auto& enemy : m_enemies)

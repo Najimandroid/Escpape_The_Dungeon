@@ -23,7 +23,6 @@ int main()
 #endif
 
 	EntityManager* manager = EntityManager::getInstance();
-
 	Map map;
 
 	bool isRunning = true;
@@ -57,8 +56,6 @@ int main()
 	{
 		deltaTime = clock.restart().asSeconds();
 		window.clear();
-
-		
 
 		sf::Event event;
 		while(window.pollEvent(event))

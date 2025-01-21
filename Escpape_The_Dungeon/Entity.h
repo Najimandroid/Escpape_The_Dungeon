@@ -2,6 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "Logger.h"
 
 class Entity
 {
@@ -9,8 +10,8 @@ public:
 	Entity();
 	Entity(Entity&& other) noexcept;
 
-	virtual void update(sf::RenderWindow& window, float deltaTime) = 0;
-	virtual void draw(sf::RenderWindow& window) = 0;
+	virtual void update(sf::RenderWindow& window, float deltaTime) { LOG("update"); };
+	virtual void draw(sf::RenderWindow& window) { LOG("draw"); };
 
 
 	void drawHitbox(sf::RenderWindow& window); //only in debug mode
@@ -19,8 +20,19 @@ public:
 
 	[[nodiscard]] bool collide(Entity* otherEntity);
 
+	///////////////
+	//* GETTERS *\\
+	///////////////
+	float getSpeed() const { return m_speed; }
 	sf::RectangleShape& getHitbox() { return m_hitbox; }
 	sf::Vector2f getPosition() { return m_position; }
+
+	///////////////
+	//* SETTERS *\\
+	///////////////
+	void setSpeed(const float newSpeed) { m_speed = newSpeed; }
+	void setPosition(const sf::Vector2f newPos) { m_position = newPos; }
+
 protected:
 
 	void initHitbox(sf::Vector2f hitboxSize);
