@@ -23,12 +23,10 @@ Wall::Wall()
 	m_sprite.setFillColor(sf::Color::White);
 }
 
-Wall::~Wall()
-{ LOG("WALL DESTROYED");}
 
 Wall::Wall(sf::Vector2f spawnPosition)
 {
-	LOG("WALL CREATED");
+	//LOG("WALL CREATED");
 	m_position = spawnPosition;
 
 	m_health = 999;

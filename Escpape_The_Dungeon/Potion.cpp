@@ -15,7 +15,7 @@ Potion::Potion(sf::Vector2f spawnPosition, float speedMultiplier)
 
 
 
-void Potion::interact(Player& player)
+void Potion::interact(Player& player, const std::vector<std::unique_ptr<Wall>>& walls)
 {
 	if (m_interacted) return;
 

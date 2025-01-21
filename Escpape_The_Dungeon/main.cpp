@@ -38,7 +38,7 @@ int main()
 	auto monster2 = std::make_unique<Wanderer>(sf::Vector2f(0, 0), sf::Vector2f(50, 50), pointsList, 4);
 
 	auto potion = std::make_unique<Potion>(sf::Vector2f(200, 200), 1.5f);
-	auto key = std::make_unique<Key>(sf::Vector2f(200, 500), nullptr);
+	auto key = std::make_unique<Key>(sf::Vector2f(200, 500), 1);
 
 	manager->addPlayer(std::move(plr));
 	manager->addEnemy(std::move(monster));
@@ -48,6 +48,7 @@ int main()
 	manager->addInteractable(std::move(key));
 
 	map.createMap(manager);
+	LOG(manager);
 
 	sf::Clock clock;
 	float deltaTime = 0.f;

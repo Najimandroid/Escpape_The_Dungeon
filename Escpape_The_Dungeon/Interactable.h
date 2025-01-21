@@ -11,7 +11,7 @@ public:
 	Interactable(sf::Vector2f spawnPosition);
 	Interactable(Interactable&& other);
 
-	virtual void interact(Player& player);
+	virtual void interact(Player& player, const std::vector<std::unique_ptr<Wall>>& walls);
 
 	virtual void update(sf::RenderWindow& window, float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;

@@ -1,21 +1,31 @@
 #include "Key.h"
 #include "Logger.h"
+#include "Door.h"
 
-Key::Key(sf::Vector2f spawnPosition, Door* target)
+Key::Key(sf::Vector2f spawnPosition, int doorID)
 {
 	m_position = spawnPosition;
-	m_target = target;
+	m_doorID = doorID;
 
 	m_hitbox.setFillColor(sf::Color::Yellow);
 
 	updatePosition(m_position);
 }
 
-void Key::interact(Player& player)
+void Key::interact(Player& player, const std::vector<std::unique_ptr<Wall>>& walls)
 {
 	if (m_interacted) return;
 
-	LOG("OPEN DOOR");
+	for (auto& wall : walls)
+	{
+		Door* door = dynamic_cast<Door*>(wall.get());
+
+		if (door)
+		{
+			LOG("Door found");
+			door->unlock(m_doorID);
+		}
+	}
 
 	m_interacted = true;
 }

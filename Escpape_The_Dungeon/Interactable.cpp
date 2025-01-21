@@ -44,7 +44,7 @@ Interactable::Interactable(Interactable&& other)
 	m_interacted = std::move(other.m_interacted);
 }
 
-void Interactable::interact(Player& player)
+void Interactable::interact(Player& player, const std::vector<std::unique_ptr<Wall>>& walls)
 {
 	if (m_interacted) return;
 	LOG("Interacted");

@@ -2,7 +2,7 @@
 
 
 #include "Map.h"
-#include "Wall.h"
+#include "Door.h"
 
 #include <memory>
 
@@ -33,6 +33,11 @@ void Map::createMap(EntityManager* manager)
 			{
 				auto newWall = std::make_unique<Wall>(sf::Vector2f(100.f * (float)x, 100.f * (float)y));
 				manager->addWall(std::move(newWall));
+			}
+			else if (m_map[x + 15 * y] == 2)
+			{
+				auto newDoor = std::make_unique<Door>(sf::Vector2f(100.f * (float)x, 100.f * (float)y), 1);
+				manager->addWall(std::move(newDoor));
 			}
 		}
 	}

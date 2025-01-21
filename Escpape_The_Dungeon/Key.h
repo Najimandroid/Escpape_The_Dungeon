@@ -1,14 +1,14 @@
 #pragma once
 
 #include "Interactable.h"
-#include "Door.h"
+#include "EntityManager.h"
 
 class Key : public Interactable
 {
 public:
-	Key(sf::Vector2f spawnPosition, Door* target);
+	Key(sf::Vector2f spawnPosition, int doorID);
 
-	virtual void interact(Player& player);
+	virtual void interact(Player& player, const std::vector<std::unique_ptr<Wall>>& walls);
 private:
-	Door* m_target;
+	int m_doorID;
 };

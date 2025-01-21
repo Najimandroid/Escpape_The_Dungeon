@@ -68,7 +68,7 @@ void EntityManager::checkInteractableCollision()
 	{
 		if (m_players[0]->collide(interactable.get()))
 		{
-			interactable->interact(*m_players.at(0).get());
+			interactable->interact(*m_players.at(0).get(), m_walls);
 		}
 	}
 }
