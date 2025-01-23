@@ -29,6 +29,11 @@ void EntityManager::addWall(std::unique_ptr<Wall>&& wall)
 
 void EntityManager::updateEntities(sf::RenderWindow& window, float deltaTime)
 {
+	for (auto& wall : m_walls)
+	{
+		wall->update(window, deltaTime);
+	}
+
 	for (auto& plr : m_players)
 	{
 		plr->update(window, deltaTime, m_walls);
@@ -42,11 +47,6 @@ void EntityManager::updateEntities(sf::RenderWindow& window, float deltaTime)
 	for (auto& interactable : m_interactables)
 	{
 		interactable->update(window, deltaTime);
-	}
-
-	for (auto& wall : m_walls)
-	{
-		wall->update(window, deltaTime);
 	}
 }
 

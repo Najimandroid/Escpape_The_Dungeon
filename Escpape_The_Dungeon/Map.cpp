@@ -5,6 +5,9 @@
 #include "Door.h"
 
 #include <memory>
+#include <sstream>
+#include <string>
+#include <vector>
 
 /*
 void Map::loadMap()
@@ -23,21 +26,67 @@ void Map::loadMap()
 	}
 }*/
 
-void Map::createMap(EntityManager* manager)
+void Map::createMap(EntityManager* manager, int roomIndex)
 {
-	for (int y = 0; y < 9; y++)
+	std::string pathToLoad = m_filePath + std::to_string(roomIndex) + ".txt";
+	LOG(pathToLoad)
+	std::ifstream file(pathToLoad);
+	//file.open(pathToLoad);
+
+	if (!file.is_open())
 	{
-		for (int x = 0; x < 15; x++)
+		LOG("COULDN'T LOAD FILE OF INDEX: " + std::to_string(roomIndex));
+		return;
+	}
+	else
+	{
+		LOG("OPENED FILE INDEX: " + std::to_string(roomIndex));
+
+		std::vector<std::string> mapContent;
+		std::string str;
+		char ch;
+
+		while (file.get(ch))
 		{
-			if (m_map[x + 15 * y] == 1)
+			if (ch == ' ' || ch == '\n')
 			{
-				auto newWall = std::make_unique<Wall>(sf::Vector2f(100.f * (float)x, 100.f * (float)y));
-				manager->addWall(std::move(newWall));
+				if (!str.empty())
+				{
+					mapContent.push_back(str);
+					str.clear();
+				}
 			}
-			else if (m_map[x + 15 * y] == 2)
+			else
 			{
-				auto newDoor = std::make_unique<Door>(sf::Vector2f(100.f * (float)x, 100.f * (float)y), 1);
-				manager->addWall(std::move(newDoor));
+				str += ch;
+			}
+		}
+
+		if (!str.empty()) {
+			mapContent.push_back(str);
+		}
+
+		for (int y = 0; y < 9; y++)
+		{
+			for (int x = 0; x < 15; x++)
+			{
+				LOG(mapContent[x + 15 * y])
+				if (mapContent[x + 15 * y] == "#")
+				{
+					auto newWall = std::make_unique<Wall>(sf::Vector2f(TILE_SIZE_PX * (float)x + TILE_SIZE_PX / 2.f, TILE_SIZE_PX * (float)y));
+					manager->addWall(std::move(newWall));
+				}
+				else if (mapContent[x + 15 * y].find("[]") == 0)
+				{
+					if (mapContent[x + 15 * y].length() > 2)
+					{
+						std::string door_id_str = mapContent[x + 15 * y].substr(2);
+						int key_id = std::stoi(door_id_str);
+
+						auto newDoor = std::make_unique<Door>(sf::Vector2f(TILE_SIZE_PX * (float)x + TILE_SIZE_PX / 2.f, TILE_SIZE_PX * (float)y), key_id);
+						manager->addWall(std::move(newDoor));
+					}
+				}
 			}
 		}
 	}

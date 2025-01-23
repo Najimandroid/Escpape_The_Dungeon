@@ -27,7 +27,7 @@ int main()
 
 	bool isRunning = true;
 
-	sf::RenderWindow window(sf::VideoMode(1920 , 1080), "Escape the Dungeon");
+	sf::RenderWindow window(sf::VideoMode(1920 , 1080), "Escape the Dungeon", sf::Style::Fullscreen);
 	window.setFramerateLimit(60);
 
 	auto plr = std::make_unique<Player>(sf::Vector2f(1920 / 2, 1080 / 2), sf::Vector2f(50, 50));
@@ -37,8 +37,8 @@ int main()
 	sf::Vector2f pointsList[4] = { sf::Vector2f(50, 50), sf::Vector2f(50, 1000), sf::Vector2f(1000, 1000),  sf::Vector2f(1000, 50) };
 	auto monster2 = std::make_unique<Wanderer>(sf::Vector2f(0, 0), sf::Vector2f(50, 50), pointsList, 4);
 
-	auto potion = std::make_unique<Potion>(sf::Vector2f(200, 200), 1.5f);
-	auto key = std::make_unique<Key>(sf::Vector2f(200, 500), 1);
+	auto potion = std::make_unique<Potion>(sf::Vector2f(100, 200), 1.5f);
+	auto key = std::make_unique<Key>(sf::Vector2f(200, 600), 1);
 
 	manager->addPlayer(std::move(plr));
 	manager->addEnemy(std::move(monster));
@@ -47,8 +47,7 @@ int main()
 	manager->addInteractable(std::move(potion));
 	manager->addInteractable(std::move(key));
 
-	map.createMap(manager);
-	LOG(manager);
+	map.createMap(manager, 1);
 
 	sf::Clock clock;
 	float deltaTime = 0.f;

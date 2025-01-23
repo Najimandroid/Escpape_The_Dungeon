@@ -2,6 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "EntityManager.h"
 
+#include <fstream>
+
+
 //MAP 9X15 TILES
 
 class Map
@@ -9,19 +12,11 @@ class Map
 public:
 
 	//void loadMap();
-	void createMap(EntityManager* manager);
+	void createMap(EntityManager* manager, int roomIndex);
 
 private:
 	//15*9 = 135
-	int m_map[135] = {
-	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-	1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-	1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-	1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-	1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1,
-	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-	1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	};
+
+	const int TILE_SIZE_PX = 120;
+	const char* m_filePath = "assets/rooms/Room"; //..1,2,3..etc
 };

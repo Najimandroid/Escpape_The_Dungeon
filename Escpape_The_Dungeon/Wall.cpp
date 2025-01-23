@@ -17,7 +17,7 @@ Wall::Wall()
 	m_damage = 0;
 	m_speed = 0;
 
-	initHitbox({ 100, 100 });
+	initHitbox({ 120, 120 });
 	initSprite();
 
 	m_sprite.setFillColor(sf::Color::White);
@@ -33,7 +33,7 @@ Wall::Wall(sf::Vector2f spawnPosition)
 	m_damage = 0;
 	m_speed = 0;
 
-	initHitbox({ 100, 100 });
+	initHitbox({ 120, 120 });
 	initSprite();
 
 	m_sprite.setFillColor(sf::Color::White);
