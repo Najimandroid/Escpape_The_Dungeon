@@ -107,15 +107,15 @@ int main()
 		}
 
 		//X:
-		if (manager->getPlayers()[0].get()->getPosition().x > 1920.f - 60.f)
+		if (manager->getPlayers()[0].get()->getPosition().x > 1920.f - 60.f + 25.f)
 		{
 			manager->unloadEntities();
-			player->setPosition({ player->getPosition().x - 1920.f - 60.f, player->getPosition().y });
+			player->setPosition({ player->getPosition().x - 1920.f + 60.f, player->getPosition().y });
 
 			player->setXIndex(player->getXIndex() + 1);
 			map.createMap(manager, { player->getXIndex(), player->getYIndex() });
 		}
-		else if (manager->getPlayers()[0].get()->getPosition().x < 60.f)
+		else if (manager->getPlayers()[0].get()->getPosition().x < 60.f - 25.f)
 		{
 			manager->unloadEntities();
 			player->setPosition({ player->getPosition().x + 1920.f - 60.f, player->getPosition().y });
