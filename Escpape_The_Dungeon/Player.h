@@ -16,6 +16,15 @@ public:
 
 	bool isWallCollided(sf::Vector2f futurePosition, const std::vector<std::unique_ptr<Wall>>& walls);
 
+	int getXIndex() { return m_xIndex; }
+	int getYIndex() { return m_yIndex; }
+
+	void setXIndex(int newIndex) { m_xIndex = newIndex; }
+	void setYIndex(int newIndex) { m_yIndex = newIndex; }
+
 private:
 	void handleInputs(float deltaTime, const std::vector<std::unique_ptr<Wall>>& walls);
+
+	int m_xIndex = 0;
+	int m_yIndex = 0;
 };

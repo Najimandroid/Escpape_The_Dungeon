@@ -38,7 +38,10 @@ public:
 	bool isEnemyCollisionDetected();
 	void checkInteractableCollision();
 
+	void unloadEntities();
+
 	std::vector<std::unique_ptr<Wall>>& getWalls() { return m_walls; }
+	std::vector<std::unique_ptr<Player>>& getPlayers() { return m_players; }
 
 private:
 

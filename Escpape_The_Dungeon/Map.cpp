@@ -26,21 +26,22 @@ void Map::loadMap()
 	}
 }*/
 
-void Map::createMap(EntityManager* manager, int roomIndex)
+void Map::createMap(EntityManager* manager, sf::Vector2i indexVector)
 {
-	std::string pathToLoad = m_filePath + std::to_string(roomIndex) + ".txt";
-	LOG(pathToLoad)
+	std::string mapCoord = '(' + std::to_string(indexVector.x) + ',' + std::to_string(indexVector.y) + ')';
+	std::string pathToLoad = m_filePath + mapCoord + ".txt";
+	LOG(mapCoord)
 	std::ifstream file(pathToLoad);
 	//file.open(pathToLoad);
 
 	if (!file.is_open())
 	{
-		LOG("COULDN'T LOAD FILE OF INDEX: " + std::to_string(roomIndex));
+		LOG("COULDN'T LOAD FILE MAP");
 		return;
 	}
 	else
 	{
-		LOG("OPENED FILE INDEX: " + std::to_string(roomIndex));
+		LOG("LOADED FILE MAP");
 
 		std::vector<std::string> mapContent;
 		std::string str;
@@ -70,7 +71,7 @@ void Map::createMap(EntityManager* manager, int roomIndex)
 		{
 			for (int x = 0; x < 15; x++)
 			{
-				LOG(mapContent[x + 15 * y])
+				//LOG(mapContent[x + 15 * y])
 				if (mapContent[x + 15 * y] == "#")
 				{
 					auto newWall = std::make_unique<Wall>(sf::Vector2f(TILE_SIZE_PX * (float)x + TILE_SIZE_PX / 2.f, TILE_SIZE_PX * (float)y));

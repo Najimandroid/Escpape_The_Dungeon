@@ -28,7 +28,7 @@ Door::Door(sf::Vector2f spawnPosition, int ID)
 	initHitbox({ 120, 120 });
 	initSprite();
 
-	m_sprite.setFillColor(sf::Color(255, 0, 255));
+	m_sprite.setFillColor(keyColors[ID]);
 
 	m_ID = ID;
 	m_unlocked = false;

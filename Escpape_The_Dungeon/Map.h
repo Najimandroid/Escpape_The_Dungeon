@@ -12,7 +12,7 @@ class Map
 public:
 
 	//void loadMap();
-	void createMap(EntityManager* manager, int roomIndex);
+	void createMap(EntityManager* manager, sf::Vector2i indexVector);
 
 private:
 	//15*9 = 135

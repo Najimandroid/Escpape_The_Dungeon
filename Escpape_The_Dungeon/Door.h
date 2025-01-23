@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Wall.h"
+#include "KeyColorConfig.h"
 
 class Door : public Wall
 {

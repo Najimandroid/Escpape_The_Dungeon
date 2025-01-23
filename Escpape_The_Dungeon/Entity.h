@@ -31,7 +31,7 @@ public:
 	//* SETTERS *\\
 	///////////////
 	void setSpeed(const float newSpeed) { m_speed = newSpeed; }
-	void setPosition(const sf::Vector2f newPos) { m_position = newPos; }
+	void setPosition(const sf::Vector2f newPos) { m_position = newPos; updatePosition(m_position); }
 
 protected:
 

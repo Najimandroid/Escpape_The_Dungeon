@@ -72,3 +72,10 @@ void EntityManager::checkInteractableCollision()
 		}
 	}
 }
+
+void EntityManager::unloadEntities()
+{
+	m_walls.clear();
+	m_enemies.clear();
+	m_interactables.clear();
+}

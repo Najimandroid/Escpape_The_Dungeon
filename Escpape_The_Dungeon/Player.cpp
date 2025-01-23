@@ -15,6 +15,9 @@ Player::Player(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize)
 	m_damage = 10;
 	m_speed = 20;
 
+	m_xIndex = 0;
+	m_yIndex = 0;
+
 	initHitbox(hitboxSize);
 	initSprite();
 

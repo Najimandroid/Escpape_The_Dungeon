@@ -7,7 +7,7 @@ Key::Key(sf::Vector2f spawnPosition, int doorID)
 	m_position = spawnPosition;
 	m_doorID = doorID;
 
-	m_hitbox.setFillColor(sf::Color::Yellow);
+	m_hitbox.setFillColor(keyColors[doorID]);
 
 	updatePosition(m_position);
 }

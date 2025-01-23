@@ -2,6 +2,7 @@
 
 #include "Interactable.h"
 #include "EntityManager.h"
+#include "KeyColorConfig.h"
 
 class Key : public Interactable
 {
