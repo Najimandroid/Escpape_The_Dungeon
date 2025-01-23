@@ -26,8 +26,7 @@ int main()
 	window.setFramerateLimit(60);
 
 	EntityManager* manager = EntityManager::getInstance();
-	Map map;
-	map.createMap(manager, {0, 0});
+
 
 	bool isRunning = true;
 
@@ -49,6 +48,9 @@ int main()
 	manager->addInteractable(std::move(potion));
 	manager->addInteractable(std::move(key));
 	manager->addInteractable(std::move(key2));
+
+	Map map;
+	map.createMap(manager, { 0, 0 });
 
 	sf::Clock clock;
 	float deltaTime = 0.f;

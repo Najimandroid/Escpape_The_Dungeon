@@ -22,6 +22,7 @@ Player::Player(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize)
 	initSprite();
 
 	m_hitbox.setFillColor(sf::Color::Green);
+	m_openedIDs.reserve(5);
 }
 
 

@@ -79,13 +79,26 @@ void Map::createMap(EntityManager* manager, sf::Vector2i indexVector)
 				}
 				else if (mapContent[x + 15 * y].find("[]") == 0)
 				{
+					bool doorOpened = false;
+
 					if (mapContent[x + 15 * y].length() > 2)
 					{
 						std::string door_id_str = mapContent[x + 15 * y].substr(2);
 						int key_id = std::stoi(door_id_str);
 
-						auto newDoor = std::make_unique<Door>(sf::Vector2f(TILE_SIZE_PX * (float)x + TILE_SIZE_PX / 2.f, TILE_SIZE_PX * (float)y), key_id);
-						manager->addWall(std::move(newDoor));
+						std::vector<int> plrOpenedIds = manager->getPlayers()[0]->getOpenedIDs();
+						for (int id : plrOpenedIds)
+						{
+							//LOG(id);
+							if (id == key_id) { doorOpened = true; break; }
+						}
+
+
+						if (!doorOpened)
+						{
+							auto newDoor = std::make_unique<Door>(sf::Vector2f(TILE_SIZE_PX * (float)x + TILE_SIZE_PX / 2.f, TILE_SIZE_PX * (float)y), key_id);
+							manager->addWall(std::move(newDoor));
+						}
 					}
 				}
 			}

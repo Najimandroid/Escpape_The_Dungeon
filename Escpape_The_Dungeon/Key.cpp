@@ -24,6 +24,7 @@ void Key::interact(Player& player, const std::vector<std::unique_ptr<Wall>>& wal
 		{
 			LOG("Door found");
 			door->unlock(m_doorID);
+			player.addOpenedID(m_doorID);
 		}
 	}
 
