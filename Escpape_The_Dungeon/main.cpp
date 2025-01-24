@@ -173,7 +173,7 @@ int main()
 			winTitle.setCharacterSize(150);
 			winTitle.setFillColor(sf::Color::Yellow);
 			winTitle.setFont(menuFont);
-			winTitle.setString("GAME OVER");
+			winTitle.setString("YOU WON!");
 			winTitle.setOrigin(winTitle.getLocalBounds().width / 2, winTitle.getLocalBounds().height / 2);
 			winTitle.setPosition({ 1920 / 2.f, 500 });
 
