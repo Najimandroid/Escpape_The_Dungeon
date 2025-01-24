@@ -19,6 +19,7 @@ Entity::Entity()
 	m_speed = 1;
 
 	initHitbox({ 5, 5 });
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
 }
 
@@ -48,6 +49,7 @@ void Entity::initHitbox(sf::Vector2f hitboxSize)
 void Entity::initSprite()
 {
 	sf::RectangleShape body(m_hitbox.getSize());
+	body.setOrigin(m_hitbox.getOrigin());
 	body.setPosition(m_position);
 
 	body.setFillColor(sf::Color::Red);

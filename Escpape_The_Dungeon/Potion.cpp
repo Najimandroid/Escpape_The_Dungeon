@@ -9,6 +9,7 @@ Potion::Potion(sf::Vector2f spawnPosition, float speedMultiplier)
 	//LOG("POTION CREATED AT: " + std::to_string(m_position.x) + ", " + std::to_string(m_position.y))
 
 	m_hitbox.setFillColor(sf::Color::Cyan);
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 
 	updatePosition(m_position);
 }

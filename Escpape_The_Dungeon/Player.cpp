@@ -19,6 +19,7 @@ Player::Player(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize)
 	m_yIndex = 0;
 
 	initHitbox(hitboxSize);
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
 
 	m_hitbox.setFillColor(sf::Color::Green);
@@ -92,6 +93,7 @@ void Player::handleInputs(float deltaTime, const std::vector<std::unique_ptr<Wal
 bool Player::isWallCollided(sf::Vector2f futurePosition, const std::vector<std::unique_ptr<Wall>>& walls)
 {
 	sf::RectangleShape hitboxDummy(m_hitbox.getSize());
+	hitboxDummy.setOrigin(m_hitbox.getOrigin());
 	hitboxDummy.setPosition(futurePosition);
 
 	sf::FloatRect boundingBox = hitboxDummy.getGlobalBounds();

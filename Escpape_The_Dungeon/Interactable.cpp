@@ -11,7 +11,8 @@ Interactable::Interactable()
 
 	m_interacted = false;
 
-	initHitbox({ 25, 25 });
+	initHitbox({ 40, 40 });
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
 
 	m_hitbox.setFillColor(sf::Color::Magenta);
@@ -27,7 +28,8 @@ Interactable::Interactable(sf::Vector2f spawnPosition)
 
 	m_interacted = false;
 
-	initHitbox({ 25, 25 });
+	initHitbox({ 40, 40 });
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
 
 	m_hitbox.setFillColor(sf::Color::Magenta);

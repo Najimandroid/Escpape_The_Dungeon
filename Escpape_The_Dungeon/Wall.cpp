@@ -18,6 +18,7 @@ Wall::Wall()
 	m_speed = 0;
 
 	initHitbox({ 120, 120 });
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
 
 	m_sprite.setFillColor(sf::Color::White);
@@ -34,6 +35,7 @@ Wall::Wall(sf::Vector2f spawnPosition)
 	m_speed = 0;
 
 	initHitbox({ 120, 120 });
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
 
 	m_sprite.setFillColor(sf::Color::White);

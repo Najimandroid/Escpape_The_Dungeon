@@ -32,22 +32,15 @@ int main()
 
 	auto plr = std::make_unique<Player>(sf::Vector2f(1920 / 2, 1080 / 2), sf::Vector2f(50, 50));
 
-	auto monster = std::make_unique<Stalker>(sf::Vector2f(500, 500), sf::Vector2f(50, 50), plr.get());
-
 	sf::Vector2f pointsList[4] = { sf::Vector2f(50, 50), sf::Vector2f(50, 1000), sf::Vector2f(1000, 1000),  sf::Vector2f(1000, 50) };
 	auto monster2 = std::make_unique<Wanderer>(sf::Vector2f(0, 0), sf::Vector2f(50, 50), pointsList, 4);
 
 	auto potion = std::make_unique<Potion>(sf::Vector2f(100, 200), 1.5f);
-	auto key = std::make_unique<Key>(sf::Vector2f(200, 600), 1);
-	auto key2 = std::make_unique<Key>(sf::Vector2f(800, 600), 2);
 
 	manager->addPlayer(std::move(plr));
-	manager->addEnemy(std::move(monster));
 	manager->addEnemy(std::move(monster2));
 
 	manager->addInteractable(std::move(potion));
-	manager->addInteractable(std::move(key));
-	manager->addInteractable(std::move(key2));
 
 	Map map;
 	map.createMap(manager, { 0, 0 });

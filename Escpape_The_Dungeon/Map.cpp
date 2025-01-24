@@ -3,6 +3,10 @@
 
 #include "Map.h"
 #include "Door.h"
+#include "Stalker.h"
+#include "Wanderer.h"
+#include "Key.h"
+#include "Potion.h"
 
 #include <memory>
 #include <sstream>
@@ -71,13 +75,26 @@ void Map::createMap(EntityManager* manager, sf::Vector2i indexVector)
 		{
 			for (int x = 0; x < 15; x++)
 			{
+				sf::Vector2f spawnPos = sf::Vector2f(TILE_SIZE_PX * (float)x + TILE_SIZE_PX, TILE_SIZE_PX * (float)y + TILE_SIZE_PX/2.f);
 				//LOG(mapContent[x + 15 * y])
-				if (mapContent[x + 15 * y] == "#")
+				if (mapContent[x + 15 * y] == "#") //WALL
 				{
-					auto newWall = std::make_unique<Wall>(sf::Vector2f(TILE_SIZE_PX * (float)x + TILE_SIZE_PX / 2.f, TILE_SIZE_PX * (float)y));
+					auto newWall = std::make_unique<Wall>(spawnPos);
 					manager->addWall(std::move(newWall));
+				}				
+				else if (mapContent[x + 15 * y] == "s") //STALKER
+				{
+					auto stalker = std::make_unique<Stalker>(spawnPos, sf::Vector2f(50, 50), manager->getPlayers()[0].get());
+					manager->addEnemy(std::move(stalker));
 				}
-				else if (mapContent[x + 15 * y].find("[]") == 0)
+				/*else if (mapContent[x + 15 * y].find("w") == 0) //WANDERER
+				{
+					if (mapContent[x + 15 * y].length() > 2)
+					{
+						std::string door_id_str = mapContent[x + 15 * y].substr(2);
+					}
+				}*/
+				else if (mapContent[x + 15 * y].find("[]") == 0) //DOOR
 				{
 					bool doorOpened = false;
 
@@ -96,8 +113,32 @@ void Map::createMap(EntityManager* manager, sf::Vector2i indexVector)
 
 						if (!doorOpened)
 						{
-							auto newDoor = std::make_unique<Door>(sf::Vector2f(TILE_SIZE_PX * (float)x + TILE_SIZE_PX / 2.f, TILE_SIZE_PX * (float)y), key_id);
+							auto newDoor = std::make_unique<Door>(spawnPos, key_id);
 							manager->addWall(std::move(newDoor));
+						}
+					}
+				}
+				else if (mapContent[x + 15 * y].find("k") == 0) //KEY
+				{
+					bool keyColected = false;
+
+					if (mapContent[x + 15 * y].length() > 1)
+					{
+						std::string id_str = mapContent[x + 15 * y].substr(1);
+						int key_id = std::stoi(id_str);
+
+						std::vector<int> plrOpenedIds = manager->getPlayers()[0]->getOpenedIDs();
+						for (int id : plrOpenedIds)
+						{
+							//LOG(id);
+							if (id == key_id) { keyColected = true; break; }
+						}
+
+
+						if (!keyColected)
+						{
+							auto newKey = std::make_unique<Key>(spawnPos, key_id);
+							manager->addInteractable(std::move(newKey));
 						}
 					}
 				}

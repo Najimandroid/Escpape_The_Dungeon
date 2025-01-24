@@ -9,6 +9,7 @@ Door::Door()
 	m_speed = 0;
 
 	initHitbox({ 120, 120 });
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
 
 	m_sprite.setFillColor(sf::Color(255, 0, 255));
@@ -26,6 +27,7 @@ Door::Door(sf::Vector2f spawnPosition, int ID)
 	m_speed = 0;
 
 	initHitbox({ 120, 120 });
+	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
 
 	m_sprite.setFillColor(keyColors[ID]);
