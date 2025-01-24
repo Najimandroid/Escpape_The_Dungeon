@@ -8,7 +8,7 @@
 class Wanderer : public Enemy
 {
 public:
-	Wanderer(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize, const sf::Vector2f* positionPoints, int numberOfPositions);
+	Wanderer(sf::Vector2f position, sf::Vector2f hitboxSize, std::vector<sf::Vector2f> positionPoints);
 
 	void update(sf::RenderWindow& window, float deltaTime) override;
 

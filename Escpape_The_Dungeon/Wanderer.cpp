@@ -2,18 +2,18 @@
 #include "VectorOperations.h"
 #include "Logger.h"
 
-Wanderer::Wanderer(sf::Vector2f position, sf::Vector2f hitboxSize, const sf::Vector2f* positionPoints, int numberOfPositions)
+Wanderer::Wanderer(sf::Vector2f position, sf::Vector2f hitboxSize, std::vector<sf::Vector2f> positionPoints)
 {
 	m_health = 100;
 	m_damage = 10;
-	m_speed = 15;
+	m_speed = 20;
 
 	initHitbox(hitboxSize);
 	initSprite();
 
 	m_hitbox.setFillColor(sf::Color::Red);
 
-	for (int i = 0; i < numberOfPositions; i++)
+	for (int i = 0; i < positionPoints.size(); i++)
 	{
 		m_positionPoints.push_back(positionPoints[i]);
 	}

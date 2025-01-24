@@ -16,7 +16,7 @@ Stalker::Stalker(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize, Entity* ta
 
 	m_health = 100;
 	m_damage = 10;
-	m_speed = 10;
+	m_speed = 8;
 
 	initHitbox(hitboxSize);
 	initSprite();

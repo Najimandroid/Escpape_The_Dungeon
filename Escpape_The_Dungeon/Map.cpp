@@ -71,6 +71,8 @@ void Map::createMap(EntityManager* manager, sf::Vector2i indexVector)
 			mapContent.push_back(str);
 		}
 
+		std::vector<sf::Vector2f> pointsList = {}; //for wanderer
+
 		for (int y = 0; y < 9; y++)
 		{
 			for (int x = 0; x < 15; x++)
@@ -87,13 +89,11 @@ void Map::createMap(EntityManager* manager, sf::Vector2i indexVector)
 					auto stalker = std::make_unique<Stalker>(spawnPos, sf::Vector2f(50, 50), manager->getPlayers()[0].get());
 					manager->addEnemy(std::move(stalker));
 				}
-				/*else if (mapContent[x + 15 * y].find("w") == 0) //WANDERER
+				else if (mapContent[x + 15 * y] == "p") //POTION
 				{
-					if (mapContent[x + 15 * y].length() > 2)
-					{
-						std::string door_id_str = mapContent[x + 15 * y].substr(2);
-					}
-				}*/
+					auto potion = std::make_unique<Potion>(spawnPos, 1.5f);
+					manager->addInteractable(std::move(potion));
+				}
 				else if (mapContent[x + 15 * y].find("[]") == 0) //DOOR
 				{
 					bool doorOpened = false;
@@ -142,7 +142,27 @@ void Map::createMap(EntityManager* manager, sf::Vector2i indexVector)
 						}
 					}
 				}
+				else if (mapContent[x + 15 * y].find("w") == 0) //WANDERER
+				{
+					if (mapContent[x + 15 * y].length() > 1)
+					{
+						std::string pos_str = mapContent[x + 15 * y].substr(1);
+						int pos_index = std::stoi(pos_str);
+
+						if (pos_index >= pointsList.size()) {
+							pointsList.resize(pos_index + 1);
+						}
+						pointsList[pos_index] = spawnPos + sf::Vector2f{-25.f, -25.f};
+					}
+				}
 			}
 		}
+
+		if (!pointsList.empty())
+		{
+			auto wanderer = std::make_unique<Wanderer>(pointsList[0], sf::Vector2f(50, 50), pointsList);
+			manager->addEnemy(std::move(wanderer));
+		}
+
 	}
 }
