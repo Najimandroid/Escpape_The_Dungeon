@@ -20,8 +20,9 @@ Wall::Wall()
 	initHitbox({ 120, 120 });
 	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
+	m_sprite.setOrigin(m_hitbox.getOrigin());
 
-	m_sprite.setFillColor(sf::Color::White);
+	m_sprite.setColor(sf::Color::White);
 }
 
 
@@ -37,8 +38,9 @@ Wall::Wall(sf::Vector2f spawnPosition)
 	initHitbox({ 120, 120 });
 	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
+	m_sprite.setOrigin({ (m_hitbox.getSize().x / 2.f) * m_sprite.getScale().x , (m_hitbox.getSize().y / 2.f) * m_sprite.getScale().y });
 
-	m_sprite.setFillColor(sf::Color::White);
+	m_sprite.setColor(sf::Color::White);
 }
 
 ////////////////
@@ -58,4 +60,14 @@ void Wall::draw(sf::RenderWindow& window)
 {
 	window.draw(m_sprite);
 	drawHitbox(window);
+}
+
+void Wall::initSprite()
+{
+	if (!m_texture.loadFromFile("assets/textures/Wall.png"))
+	{
+		LOG("COULDN'T LOAD WALL TEXTURE")
+	}
+	m_sprite.setTexture(m_texture);
+	updatePosition(m_position);
 }

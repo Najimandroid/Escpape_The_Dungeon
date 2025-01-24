@@ -48,13 +48,13 @@ void Entity::initHitbox(sf::Vector2f hitboxSize)
 
 void Entity::initSprite()
 {
-	sf::RectangleShape body(m_hitbox.getSize());
+/*	sf::RectangleShape body(m_hitbox.getSize());
 	body.setOrigin(m_hitbox.getOrigin());
 	body.setPosition(m_position);
 
 	body.setFillColor(sf::Color::Red);
 
-	m_sprite = body;
+	m_sprite = body;*/
 }
 
 void Entity::updatePosition(const sf::Vector2f newPosition)

@@ -15,6 +15,8 @@ public:
 
 	virtual void update(sf::RenderWindow& window, float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
+protected:
+	virtual void initSprite();
 
 protected:
 	bool m_interacted;

@@ -15,4 +15,7 @@ public:
 
 	virtual void update(sf::RenderWindow& window, float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
+
+private:
+	void initSprite() override;
 };

@@ -13,6 +13,8 @@ public:
 	void update(sf::RenderWindow& window, float deltaTime) override;
 
 	void followPath(float deltaTime);
+private:
+	void initSprite() override;
 
 private:
 	std::vector<sf::Vector2f> m_positionPoints;

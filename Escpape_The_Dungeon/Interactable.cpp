@@ -14,6 +14,8 @@ Interactable::Interactable()
 	initHitbox({ 40, 40 });
 	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
+	m_sprite.setScale({ .4f, .4f });
+	m_sprite.setOrigin({ (m_hitbox.getSize().x / 2.f) * m_sprite.getScale().x , (m_hitbox.getSize().y / 2.f) * m_sprite.getScale().y });
 
 	m_hitbox.setFillColor(sf::Color::Magenta);
 }
@@ -31,6 +33,8 @@ Interactable::Interactable(sf::Vector2f spawnPosition)
 	initHitbox({ 40, 40 });
 	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
+	m_sprite.setScale({ .4f, .4f });
+	m_sprite.setOrigin({ 48.f, 48.f });
 
 	m_hitbox.setFillColor(sf::Color::Magenta);
 }
@@ -70,4 +74,8 @@ void Interactable::draw(sf::RenderWindow& window)
 {
 	window.draw(m_sprite);
 	drawHitbox(window);
+}
+
+void Interactable::initSprite()
+{
 }

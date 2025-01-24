@@ -11,5 +11,7 @@ public:
 
 	virtual void interact(Player& player, const std::vector<std::unique_ptr<Wall>>& walls);
 private:
+	void initSprite() override;
+private:
 	int m_doorID;
 };

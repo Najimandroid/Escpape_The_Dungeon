@@ -5,6 +5,7 @@
 
 #include "EntityManager.h"
 #include "Map.h"
+#include "Clock.h"
 
 #include "Stalker.h"
 #include "Wanderer.h"
@@ -41,6 +42,8 @@ int main()
 	Map map;
 	map.createMap(manager, { 0, 0 });
 
+	Clock timer(60);
+
 	sf::Clock clock;
 	float deltaTime = 0.f;
 
@@ -66,8 +69,9 @@ int main()
 		}
 
 		manager->updateEntities(window, deltaTime);
+		timer.updateClock(window, deltaTime);
 
-		if(manager->isEnemyCollisionDetected())
+		if(manager->isEnemyCollisionDetected() || timer.getTime() <= 0)
 		{
 			LOG("GAME OVER!");
 			isRunning = false;
@@ -117,6 +121,8 @@ int main()
 
 		window.display();
 	}
+
+	std::this_thread::sleep_for(std::chrono::seconds(1));
 
 	return 0;
 }

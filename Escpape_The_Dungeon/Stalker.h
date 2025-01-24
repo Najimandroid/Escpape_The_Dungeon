@@ -12,7 +12,8 @@ public:
 	void update(sf::RenderWindow& window, float deltaTime) override;
 
 	void followEntity(Entity* followedEntity, float deltaTime);
-
+private:
+	void initSprite() override;
 private:
 	Entity* m_target;
 };

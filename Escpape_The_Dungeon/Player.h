@@ -27,6 +27,9 @@ public:
 	void addOpenedID(int openedID) { m_openedIDs.push_back(openedID); }
 
 private:
+	void initSprite() override;
+
+private:
 	void handleInputs(float deltaTime, const std::vector<std::unique_ptr<Wall>>& walls);
 
 	std::vector<int> m_openedIDs;

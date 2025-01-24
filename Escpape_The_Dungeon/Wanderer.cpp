@@ -10,8 +10,10 @@ Wanderer::Wanderer(sf::Vector2f position, sf::Vector2f hitboxSize, std::vector<s
 
 	initHitbox(hitboxSize);
 	initSprite();
+	m_sprite.setScale({ .5f, .5f });
+	m_sprite.setOrigin({ (m_hitbox.getSize().x / 2.f) * m_sprite.getScale().x , (m_hitbox.getSize().y / 2.f) * m_sprite.getScale().y });
 
-	m_hitbox.setFillColor(sf::Color::Red);
+	m_sprite.setColor(sf::Color::Cyan);
 
 	for (int i = 0; i < positionPoints.size(); i++)
 	{
@@ -57,4 +59,13 @@ void Wanderer::followPath(float deltaTime)
 	velocity = velocity * sf::Vector2f{ m_speed * 20, m_speed * 20 };
 
 	updatePosition(m_position + velocity * deltaTime);
+}
+
+void Wanderer::initSprite()
+{
+	if (!m_texture.loadFromFile("assets/textures/Ghost.png"))
+	{
+		LOG("COULDN'T LOAD WANDERER TEXTURE")
+	}
+	m_sprite.setTexture(m_texture);
 }

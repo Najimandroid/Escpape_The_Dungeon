@@ -21,6 +21,9 @@ Player::Player(sf::Vector2f spawnPosition, sf::Vector2f hitboxSize)
 	initHitbox(hitboxSize);
 	m_hitbox.setOrigin(m_hitbox.getSize() / 2.f);
 	initSprite();
+	m_sprite.setColor(sf::Color::Green);
+	m_sprite.setScale({ .5f, .5f });
+	m_sprite.setOrigin({ 60.f, 60.f });
 
 	m_hitbox.setFillColor(sf::Color::Green);
 	m_openedIDs.reserve(5);
@@ -40,6 +43,16 @@ void Player::update(sf::RenderWindow& window, float deltaTime, const std::vector
 ////////////////
 //* GRAPHICS *\\
 ////////////////
+
+void Player::initSprite()
+{
+	if (!m_texture.loadFromFile("assets/textures/Player.png"))
+	{
+		LOG("COULDN'T LOAD PLAYER TEXTURE")
+	}
+	m_sprite.setTexture(m_texture);
+	updatePosition(m_position);
+}
 
 void Player::draw(sf::RenderWindow& window)
 {
