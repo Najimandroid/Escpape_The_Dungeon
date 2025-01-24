@@ -26,6 +26,8 @@ public:
 
 	void addOpenedID(int openedID) { m_openedIDs.push_back(openedID); }
 
+	void death();
+
 private:
 	void initSprite() override;
 

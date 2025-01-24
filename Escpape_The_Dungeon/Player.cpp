@@ -44,6 +44,17 @@ void Player::update(sf::RenderWindow& window, float deltaTime, const std::vector
 //* GRAPHICS *\\
 ////////////////
 
+void Player::death()
+{
+	if (!m_deathTexture.loadFromFile("assets/textures/Death.png"))
+	{
+		LOG("COULDN'T LOAD DEATH TEXTURE")
+		return;
+	}
+	m_sprite.setTexture(m_deathTexture);
+	updatePosition(m_position);
+}
+
 void Player::initSprite()
 {
 	if (!m_texture.loadFromFile("assets/textures/Player.png"))

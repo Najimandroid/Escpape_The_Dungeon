@@ -48,6 +48,8 @@ protected:
 
 	sf::RectangleShape m_hitbox;
 	sf::Sprite m_sprite;
+
+	sf::Texture m_deathTexture;
 	sf::Texture m_texture;
 
 };
