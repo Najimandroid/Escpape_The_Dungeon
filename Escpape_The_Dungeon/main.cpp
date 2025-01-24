@@ -33,7 +33,7 @@ int main()
 
 	//MENU
 	sf::Font menuFont;
-	sf::Text gameTitle, playTitle, gameOverTitle;
+	sf::Text gameTitle, playTitle, gameOverTitle, winTitle;
 	if (!menuFont.loadFromFile("assets/fonts/Pixel.ttf"))
 	{
 		LOG("COULDN'T LOAD MENU FONT")
@@ -167,6 +167,24 @@ int main()
 		}
 
 		window.display();
+		
+		if (!manager->getPlayers().empty() && manager->getPlayers()[0].get()->hasWon())
+		{
+			winTitle.setCharacterSize(150);
+			winTitle.setFillColor(sf::Color::Yellow);
+			winTitle.setFont(menuFont);
+			winTitle.setString("GAME OVER");
+			winTitle.setOrigin(winTitle.getLocalBounds().width / 2, winTitle.getLocalBounds().height / 2);
+			winTitle.setPosition({ 1920 / 2.f, 500 });
+
+			window.clear();
+			window.draw(winTitle);
+			window.display();
+
+			std::this_thread::sleep_for(std::chrono::seconds(2));
+			window.clear(); break;
+		}
+
 		if (!isRunning && !isOnMenu) {
 			manager->getPlayers()[0].get()->death(); manager->getPlayers()[0].get()->draw(window); std::this_thread::sleep_for(std::chrono::milliseconds(500));
 

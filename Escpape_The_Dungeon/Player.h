@@ -19,10 +19,12 @@ public:
 
 	int getXIndex() { return m_xIndex; }
 	int getYIndex() { return m_yIndex; }
+	bool hasWon() { return m_hasWon; }
 	std::vector<int> getOpenedIDs() { return m_openedIDs; }
 
 	void setXIndex(int newIndex) { m_xIndex = newIndex; }
 	void setYIndex(int newIndex) { m_yIndex = newIndex; }
+	void makeWin() { m_hasWon = true; }
 
 	void addOpenedID(int openedID) { m_openedIDs.push_back(openedID); }
 
@@ -38,4 +40,6 @@ private:
 
 	int m_xIndex = 0;
 	int m_yIndex = 0;
+
+	bool m_hasWon;
 };

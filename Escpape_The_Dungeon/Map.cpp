@@ -7,6 +7,7 @@
 #include "Wanderer.h"
 #include "Key.h"
 #include "Potion.h"
+#include "Crystal.h"
 
 #include <memory>
 #include <sstream>
@@ -93,6 +94,11 @@ void Map::createMap(EntityManager* manager, sf::Vector2i indexVector)
 				{
 					auto potion = std::make_unique<Potion>(spawnPos, 1.5f);
 					manager->addInteractable(std::move(potion));
+				}
+				else if (mapContent[x + 15 * y] == "c") //POTION
+				{
+					auto crystal = std::make_unique<Crystal>(spawnPos);
+					manager->addInteractable(std::move(crystal));
 				}
 				else if (mapContent[x + 15 * y].find("[]") == 0) //DOOR
 				{
